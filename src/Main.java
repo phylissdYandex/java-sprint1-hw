@@ -9,21 +9,40 @@ public class Main {
 
         while (userInput != 0) {
             if (userInput == 1) {
-                System.out.println("Укажите месяц: 0 - январь, 1 - февраль, " +
-                        "2 - март, 3- апрель, 4 - май, 5 - июнь, 6 - июль, 7 - август, 8 - сентябрь, " +
-                        "9 - октябрь, 10- ноябрь, 11 - декабрь");
+                System.out.println("Укажите месяц: 1 - январь, 2 - февраль, " +
+                        "3 - март, 4- апрель, 5 - май, 6 - июнь, 7 - июль, 8 - август, 9 - сентябрь, " +
+                        "10 - октябрь, 11- ноябрь, 12 - декабрь");
                 int month = scanner.nextInt();
-                System.out.println("Укажите день: ");
+                if (month < 1 || month > 12) {
+                    System.out.println("Можно указать только от 1 до 12, попробуйте снова");
+                    continue;
+                }
+                System.out.println("Укажите день начиная от 1 до 30: ");
                 int day = scanner.nextInt();
+                if (day < 1 || day > 30) {
+                    System.out.println("Можно указать только от 1 до 30, попробуйте снова");
+                    continue;
+                }
                 System.out.println("Укажите количество шагов: ");
                 int step = scanner.nextInt();
-                steptracker.saveCountStep(month, day, step);
-                System.out.println("Значение сохранено!");
+                if (step > 0) {
+                    steptracker.saveCountStep(month, day, step);
+                    System.out.println("Значение сохранено!");
+                } else {
+                    System.out.println("Значение не может быть отрицательным");
+
+                continue;
+                }
+
             }
 
             if (userInput == 2) {
                 System.out.println("Укажите месяц за который вы хотите получить статистику: ");
                 int month = scanner.nextInt();
+                if (month < 1 || month > 12) {
+                    System.out.println("Можно указать только от 1 до 12, попробуйте снова");
+                    continue;
+                }
                 steptracker.statistic(month);
                 steptracker.maxSeries(month);
             }
