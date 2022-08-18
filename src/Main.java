@@ -44,7 +44,7 @@ public class Main {
                     continue;
                 }
                 steptracker.statistic(month);
-                steptracker.maxSeries(month);
+                
             }
 
             if (userInput == 3) {
